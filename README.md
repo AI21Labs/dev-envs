@@ -1,45 +1,127 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+# Development Environment and Experience
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
-
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
-
----
-
-## Edit a file
-
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
-
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+A collection of [helper scripts](#helpers) to bootstrap your Mac box for development.
+Let's start...
 
 ---
 
-## Create a file
-
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+**If you find any issue or you feel something is missing, we encourage you to contribute to the project.** For more information, see [contributing](#contributing).
 
 ---
 
-## Clone a repository
+## Disclaimer
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+1. **We do not modify user settings automatically** — to complete the setup, please complete the installation as noted at the first line of each language below
+2. **Always start by bootstrapping your machine.** For more information, see [Getting Started](#getting-started)
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+## Getting Started
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+1. Clone the repository, **or**
+
+   ```shell
+   git clone git@bitbucket.org:ai21labs/dev-envs.git
+   ```
+
+2. [Download it as a zip ball](https://bitbucket.org/ai21labs/dev-envs/src/master/), unzip to a directory and change into it (if you are a new on the crew, you probably want this)
+
+   ```shell
+   unzip -q -o ai21-dev-envs-*.zip
+   cd ai21-dev-envs-*/
+   ```
+
+## Bootstrap Your Mac
+
+1. Install [brew](https://brew.sh/) (verify by running `brew doctor`)
+2. Execute `./helpers/bootstrap.sh`
+3. Our [helper scripts](#helpers) require Bash version 5.1.8 (or higher). By default MacOS comes with Bash version 3.2.x. Refer to [this section](https://itnext.io/upgrading-bash-on-macos-7138bd1066ba) to set Bash version 5.x.x as default
+
+## Generate SSH keys
+
+1. Execute `./helpers/ssh-key-gen.sh`
+2. Store the generated SSH keys in your password manager
+
+## BitBucket
+
+1. Execute `./helpers/config-bitbucket.sh`
+2. Authorize [an SSH key for use with SAML single sign-on](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on/authorizing-an-ssh-key-for-use-with-saml-single-sign-on)
+3. Use Git to clone and push code changes using [Git protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols); e.g.
+
+   ```shell
+   git clone git@github.com:present-simple/dev-envs.git
+   ```
+
+If you wish to enhance your GitHub experience, see [GitHub Experience](./docs/github-experience.md).
+
+[Git has support for signing your work](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work) to ensure commits come from a trusted source. To sign your work, please follow [Signed Commits guide](docs/signed-commits.md).
+
+## Language and Stack Specifics
+
+We have more specific notes for each language
+
+- [NodeJS / NPM](./docs/nodejs-dev.md)
+- [Python / PIP](./docs/python-dev.md)
+
+## Conventional Commits
+
+We strive to be [Commitizen-friendly](https://commitizen-tools.github.io/commitizen/), you are encouraged to use `git cz commit` as an helper for using [conventional commits](https://conventionalcommits.org/)
+
+## Customizations
+
+### Shell
+
+MacOS (Catalina and greater) uses [ZSH](https://en.wikipedia.org/wiki/Z_shell) as the default and it's a great default. If you're not a shell person, just use it.
+
+- If you want to read on why we use ZSH read [The Battle of Shell](./docs/shell-battle.md#the-great-shell-battle)
+- If you want your shell to be awesome read [Pimp My shell](./docs/pimp-my-shell.md#pimp-my-shell)
+
+Please avoid using [fish](https://fishshell.com/), as most of our scripts are written for [Bash](https://www.gnu.org/software/bash/).
+
+#### Bash
+
+To verify the [brewed Bash](https://github.com/present-smple/dev-envs/blob/main/helpers/.Brewfile#L8) is working for you, the following commands should return the same output
+
+```shell
+realpath $(brew --prefix bash)/bin/bash
+realpath $(which bash)
+```
+
+If you wish to set Bash as the default shell, follow [this guide](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/).
+
+### Integrated Development Environments (IDEs)
+
+We recommend using [Visual Studio Code](https://code.visualstudio.com/) (VSCode), which should be installed for you if [bootstrapped your mac](#bootstrap-your-mac).
+
+If you wish to enhance your VSCode experience, see [VSCode Experience](./docs/vscode-experience.md).
+
+## Helpers
+
+This is what the helpers do:
+
+- `bootstrap.sh` installs **mandatory** packages
+- `config-bitbucket.sh` configures Bitbucket SSH
+- `ssh-key-gen.sh` generates SSH key-pair
+- `vscode-exts.sh` installs [recommended VSCode extensions](./docs/vscode-experience.md#extensions)
+- `vscode-ligatures.sh` installs [programming ligatures for VSCode](./docs/vscode-experience.md#programming-ligatures)
+
+Some helpers have parameters for more streamlined work; use the `--help`. e.g.
+
+```shell
+$ ./helpers/vscode-exts.sh --help
+vscode-exts.sh OPTIONS
+
+OPTIONS:
+  [-r|--region <region>]     default: us-east-1
+  [-a|--auto]                use default values
+```
+
+```shell
+./helpers/vscode-exts.sh
+```
+
+## Contribute
+
+1. Run validation by leveraging [pre-commit](https://pre-commit.com)
+   1. Install `pre-commit install --install-hooks -t pre-commit -t commit-msg`
+   2. To run on-demand `pre-commit run -a`
+      - `pre-commit run shellcheck -a --verbose --hook-stage manual` for recommendation
+2. Submit a pull-request
