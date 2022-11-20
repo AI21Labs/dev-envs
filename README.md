@@ -40,14 +40,14 @@ Let's start...
 1. Execute `./helpers/ssh-key-gen.sh`
 2. Store the generated SSH keys in your password manager
 
-## BitBucket
+## GitHub
 
-1. Execute `./helpers/config-bitbucket.sh`
+1. Execute `./helpers/config-github.sh`
 2. Authorize [an SSH key for use with SAML single sign-on](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on/authorizing-an-ssh-key-for-use-with-saml-single-sign-on)
 3. Use Git to clone and push code changes using [Git protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols); e.g.
 
    ```shell
-   git clone git@github.com:present-simple/dev-envs.git
+   git clone git@github.com:ai21/dev-envs.git
    ```
 
 If you wish to enhance your GitHub experience, see [GitHub Experience](./docs/github-experience.md).
@@ -98,7 +98,7 @@ If you wish to enhance your VSCode experience, see [VSCode Experience](./docs/vs
 This is what the helpers do:
 
 - `bootstrap.sh` installs **mandatory** packages
-- `config-bitbucket.sh` configures Bitbucket SSH
+- `config-github.sh` configures Github SSH
 - `ssh-key-gen.sh` generates SSH key-pair
 - `vscode-exts.sh` installs [recommended VSCode extensions](./docs/vscode-experience.md#extensions)
 - `vscode-ligatures.sh` installs [programming ligatures for VSCode](./docs/vscode-experience.md#programming-ligatures)
