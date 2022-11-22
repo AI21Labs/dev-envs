@@ -31,9 +31,10 @@ Let's start...
 
 ## Bootstrap Your Mac
 
-1. Install [brew](https://brew.sh/) (verify by running `brew doctor`)
-2. Execute `./helpers/bootstrap.sh`
-3. Our [helper scripts](#helpers) require Bash version 5.1.8 (or higher). By default MacOS comes with Bash version 3.2.x. Refer to [this section](https://itnext.io/upgrading-bash-on-macos-7138bd1066ba) to set Bash version 5.x.x as default
+1. [Kandji](https://www.kandji.io/mdm/start/product/) should have completed bootstrapping your Mac installation with [brew](https://brew.sh/) as described [here](https://ai21labs.atlassian.net/wiki/spaces/engineering/pages/155812007/How+to+Bootstrap+your+Mac+with+Kandji)
+   - Verify by running `brew doctor`
+   - If you find some packages are missing, feel free to contribute to [infra-mac-bootstrap](https://bitbucket.org/ai21labs/infra-mac-bootstrap/src/master)
+2. Our [helper scripts](#helpers) require Bash version 5.1.8 (or higher). By default MacOS comes with Bash version 3.2.x. Refer to [this section](https://itnext.io/upgrading-bash-on-macos-7138bd1066ba) to set Bash version 5.x.x as default
 
 ## Generate SSH keys
 
@@ -97,7 +98,6 @@ If you wish to enhance your VSCode experience, see [VSCode Experience](./docs/vs
 
 This is what the helpers do:
 
-- `bootstrap.sh` installs **mandatory** packages
 - `config-github.sh` configures Github SSH
 - `ssh-key-gen.sh` generates SSH key-pair
 - `vscode-exts.sh` installs [recommended VSCode extensions](./docs/vscode-experience.md#extensions)
